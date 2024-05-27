@@ -16,9 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
     dropArea.addEventListener("drop", (e) => {
         e.preventDefault();
         dropArea.classList.remove("border-blue-500");
+        console.log("File dropped:", e.dataTransfer.files[0]);
         const file = e.dataTransfer.files[0];
         handleFile(file);
-    });
+    });          
 
     browseButton.addEventListener("click", () => {
         imageInput.click();
@@ -41,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const reader = new FileReader();
     
         reader.onload = function (e) {
-            img.onload = function () {
+            img.onload = async function () {
                 const canvas = document.createElement('canvas');
                 let width = img.width;
                 let height = img.height;
@@ -69,6 +70,26 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Display resized image preview
                 imagePreview.src = dataUrl;
                 imagePreview.classList.remove("hidden"); // Show the image preview
+    
+                // Upload the resized image
+                try {
+                    const response = await fetch("http://localhost:5000/caption", {
+                        method: "POST",
+                        body: formData,
+                    });
+    
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+    
+                    const responseData = await response.json();
+                    console.log("Upload successful:", responseData);
+    
+                    // Display the caption in the <p> tag
+                    document.getElementById('caption').innerText = responseData.caption;
+                } catch (error) {
+                    console.error("Error uploading file:", error);
+                }
             };
     
             img.src = e.target.result;
@@ -78,38 +99,5 @@ document.addEventListener("DOMContentLoaded", () => {
     
         // Remove caption when new image is uploaded
         document.getElementById("caption").innerText = "";
-        return formData;
-    }
-    
-});
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-document.getElementById('generateCaption').addEventListener('click', async () => {
-    const fileInput = document.getElementById('imageInput');
-    if (fileInput.files.length === 0) {
-        alert('Please select an image file.');
-        return;
-    }
-
-    const file = fileInput.files[0];
-    const formData = new FormData();
-    formData.append('file', file);
-
-    try {
-        const response = await fetch('http://localhost:5000/caption', {
-            method: 'POST',
-            body: formData
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        document.getElementById('caption').innerText = data.caption;
-    } catch (error) {
-        console.error(error);
-        document.getElementById('caption').innerText = 'Failed to generate caption.';
     }
 });

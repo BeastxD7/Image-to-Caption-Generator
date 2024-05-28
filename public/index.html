@@ -10,6 +10,10 @@
         #imagePreview {
             max-width: 100%;
             height: auto;
+            max-height: 300px;
+        }
+        #loadingIndicator {
+            display: none;
         }
     </style>
 </head>
@@ -19,13 +23,20 @@
         <div id="dropArea" class="w-full p-8 border border-dashed border-gray-500 rounded-lg mb-4">
             <p class="text-gray-400 text-center">Drag and drop your image here</p>
             <img id="imagePreview" src="#" alt="Image Preview" class="hidden mt-4 mx-auto">
-        </div>        
+        </div>
         <input type="file" id="imageInput" accept="image/*" class="hidden">
         <div class="space-x-4">
             <button id="browseButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Browse</button>
             <button id="generateCaption" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Generate Caption</button>
         </div>
+        <div id="loadingIndicator" class="mt-4 text-center flex justify-center items-center gap-2 mt-5 w-full">
+            <img class="h-6 w-6" src="assets/spinner.gif" alt="Loading...">
+            <p class="text-xl">Generating caption...</p>
+        </div>
         <p id="caption" class="mt-4 text-center text-lg"></p>
+        <button id="saveCaption" class="hidden bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Save Caption</button>
+        <h2 class="text-2xl font-bold mt-8">Caption History</h2>
+        <ul id="captionHistory" class="mt-4 w-full"></ul>
     </div>
     <script src="app.js"></script>
 </body>

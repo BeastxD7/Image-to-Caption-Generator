@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
         captions.forEach((item) => {
             const listItem = document.createElement("li");
             listItem.className = "bg-gray-800 p-2 rounded my-2";
-            listItem.innerHTML = `<img src="${item.image}" alt="Image" class="w-16 h-16 inline-block mr-4 rounded"><span>${item.caption}</span>`;
+            listItem.innerHTML = `<img src="${item.image}" alt="Image" class=" object-cover w-16 h-16 inline-block mr-4 rounded"><span>${item.caption}</span>`;
             captionHistory.appendChild(listItem);
         });
     }

@@ -14,18 +14,18 @@
     </style>
 </head>
 <body class="bg-gray-900 text-white">
-    <div class="container mx-auto p-4 flex flex-col items-center justify-center h-screen">
+    <div class="container mx-auto p-4 flex flex-col items-center justify-center min-h-screen">
         <h1 class="text-3xl font-bold mb-4">Image to Caption Generator</h1>
         <div id="dropArea" class="w-full p-8 border border-dashed border-gray-500 rounded-lg mb-4">
             <p class="text-gray-400 text-center">Drag and drop your image here</p>
             <img id="imagePreview" src="#" alt="Image Preview" class="hidden mt-4 mx-auto">
-        </div>        
+        </div>
         <input type="file" id="imageInput" accept="image/*" class="hidden">
         <div class="space-x-4">
             <button id="browseButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Browse</button>
             <button id="generateCaption" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Generate Caption</button>
         </div>
-        <p id="caption" class="mt-4 text-center text-lg"></p>
+        <p id="caption" class="mt-4 text-center text-xl font-bold"></p>
     </div>
     <script src="app.js"></script>
 </body>

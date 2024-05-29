@@ -7,11 +7,65 @@
     <title>Image to Caption Generator</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
+        /* Include the custom scrollbar CSS here */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #444;
+            border-radius: 10px;
+            border: 3px solid #1a1a1a;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: #444 #1a1a1a;
+        }
+
+        body::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        body::-webkit-scrollbar-track {
+            background: #1a1a1a;
+            border-radius: 10px;
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background-color: #444;
+            border-radius: 10px;
+            border: 3px solid #1a1a1a;
+        }
+
+        body::-webkit-scrollbar-thumb:hover {
+            background-color: #555;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            scroll-behavior: smooth;
+        }
+
         #imagePreview {
             max-width: 100%;
             height: auto;
         }
     </style>
+
 </head>
 <body class="bg-gray-900 text-white">
     <div class="container mx-auto p-4 flex flex-col items-center justify-center min-h-screen">
